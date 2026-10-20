@@ -1,5 +1,7 @@
 # Next benchmarks: pitches for cloud runs
 
+**User suggestions are welcome and will be added to this doc**
+
 Written 2026-10-16, after "Decision Models vs LLMs" (ABCD call labeling). Each pitch reuses the ABCD harness in
 `ABCD Call Labeling/02_benchmark.ipynb`: one call per chat, the same `QUESTIONS`, structured output, a resumable
 `call_log.csv` with configuration fingerprints, and paired permutation tests. Costs are estimates scaled from
