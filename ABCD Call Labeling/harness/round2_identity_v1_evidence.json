@@ -1,0 +1,390 @@
+{
+  "config_fingerprints": {
+    "Claude Haiku 5.5": "54b5ccd49c63ab10",
+    "Clef": "f51bb75f1e975436",
+    "Clef-flash (Cloudflare)": "751463adac9c3380",
+    "GPT-6 Luna": "908387ff1dde86b0",
+    "Gemini 3.5 Flash-Lite": "58a1050130c34b9f",
+    "Jev 1.13": "f7747bb5a77417b1",
+    "Jev 1.14": "e1733a7b141159bb",
+    "Metis (GreenPT)": "e9aed60ef8593bd5"
+  },
+  "evidence_field": true,
+  "identity_version": "v1",
+  "llm_conversation_template": "## Conversation\n{transcript}\n",
+  "llm_question_block": "You are labeling a customer-service conversation between an agent and a customer of an online clothing store. Answer every question using only the conversation. Reply with a JSON object that has one key per question, using exactly one of the listed option keys as each value.\n\n## Questions\n\n### reason\nWhy did the customer contact the store?\n- account_access: Can't get into their account: forgot username or password, or two-factor authentication problems\n- manage_account: Wants to change account details or services: address, name, phone, payment method, added or removed services\n- order_issue: Problem with an existing order: unexpected fee, delivery time, payment method, quantity, or wants to change or cancel the order\n- product_defect: Received a faulty or wrong item and wants a return or refund, or asks about a refund\n- purchase_dispute: Disputes a charge or price: price dropped, competitor is cheaper, item out of stock, promo code failed, billed for something not bought or already returned\n- shipping_issue: Shipping problem: package status, change shipping details, missing package, or shipping cost\n- single_item_query: General question about one product (how it works, materials, sizing) with no order problem\n- storewide_query: General question about store-wide policies: pricing, timing, membership, or return policy\n- subscription_inquiry: Question about their subscription or membership: status, due date or amount, paying the bill, or extending it\n- troubleshoot_site: The website isn't working: slow, search results wrong, shopping cart or credit card not working\n\n### intent\nWhat specific request did the customer make?\n- bad_price_competitor: purchase dispute: bad price competitor\n- bad_price_yesterday: purchase dispute: bad price yesterday\n- boots: single item query: boots\n- cost: shipping issue: cost\n- credit_card: troubleshoot site: credit card\n- jacket: single item query: jacket\n- jeans: single item query: jeans\n- manage: shipping issue: manage\n- manage_cancel: order issue: manage cancel\n- manage_change_address: manage account: manage change address\n- manage_change_name: manage account: manage change name\n- manage_change_phone: manage account: manage change phone\n- manage_create: order issue: manage create\n- manage_dispute_bill: subscription inquiry: manage dispute bill\n- manage_downgrade: order issue: manage downgrade\n- manage_extension: subscription inquiry: manage extension\n- manage_pay_bill: subscription inquiry: manage pay bill\n- manage_payment_method: manage account: manage payment method\n- manage_upgrade: order issue: manage upgrade\n- membership: storewide query: membership\n- missing: shipping issue: missing\n- mistimed_billing_already_returned: purchase dispute: mistimed billing already returned\n- mistimed_billing_never_bought: purchase dispute: mistimed billing never bought\n- out_of_stock_general: purchase dispute: out of stock general\n- out_of_stock_one_item: purchase dispute: out of stock one item\n- policy: storewide query: policy\n- pricing: storewide query: pricing\n- promo_code_invalid: purchase dispute: promo code invalid\n- promo_code_out_of_date: purchase dispute: promo code out of date\n- recover_password: account access: recover password\n- recover_username: account access: recover username\n- refund_initiate: product defect: refund initiate\n- refund_status: product defect: refund status\n- refund_update: product defect: refund update\n- reset_2fa: account access: reset two-factor authentication\n- return_color: product defect: return color\n- return_size: product defect: return size\n- return_stain: product defect: return stain\n- search_results: troubleshoot site: search results\n- shirt: single item query: shirt\n- shopping_cart: troubleshoot site: shopping cart\n- slow_speed: troubleshoot site: slow speed\n- status: shipping issue: status\n- status_active: subscription inquiry: status active\n- status_credit_missing: manage account: status credit missing\n- status_delivery_time: order issue: status delivery time\n- status_due_amount: subscription inquiry: status due amount\n- status_due_date: subscription inquiry: status due date\n- status_mystery_fee: order issue: status mystery fee\n- status_payment_method: order issue: status payment method\n- status_quantity: order issue: status quantity\n- status_service_added: manage account: status service added\n- status_service_removed: manage account: status service removed\n- status_shipping_question: manage account: status shipping question\n- timing: storewide query: timing\n\n### identity_verified\nDid the agent run the store's formal identity verification, checking three of the customer's details together: their full name plus two of account ID, order ID, zip code or phone number?\n- yes: Formal identity verification was done: three details checked together\n- no: No formal verification. Pulling up the account from only a name or account ID does not count, and neither does validating a purchase with username, email and order ID\n\n### refund_offered\nDid the agent issue a refund to the customer?\n- yes: A refund was issued\n- no: No refund was issued (refunds may be mentioned, asked about or denied)\n\n### promo_given\nDid the agent give the customer a promo code?\n- yes: A promo code was given\n- no: No promo code was given\n\n### handed_off\nDid the agent pass the issue to another team (a manager, the purchasing department or the website team)?\n- yes: The issue was passed to another team\n- no: The agent handled it without passing it on\n\n### resolution\nHow far did the agent go for the customer?\n- information_only: Information only: the agent answered questions, looked things up or passed the issue on, but changed nothing and gave nothing\n- changed_something: Changed something: the agent updated an order or account, reset a password, or placed a purchase, but gave no money back\n- money_back: Money back: the agent issued a refund or gave the customer a promo code\n\n### identity_evidence\nCopy, word for word, the one line of the conversation that your identity_verified answer rests on. Use an empty string if no line supports it.\n",
+  "llm_schema": {
+    "additionalProperties": false,
+    "properties": {
+      "handed_off": {
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "type": "string"
+      },
+      "identity_evidence": {
+        "type": "string"
+      },
+      "identity_verified": {
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "type": "string"
+      },
+      "intent": {
+        "enum": [
+          "bad_price_competitor",
+          "bad_price_yesterday",
+          "boots",
+          "cost",
+          "credit_card",
+          "jacket",
+          "jeans",
+          "manage",
+          "manage_cancel",
+          "manage_change_address",
+          "manage_change_name",
+          "manage_change_phone",
+          "manage_create",
+          "manage_dispute_bill",
+          "manage_downgrade",
+          "manage_extension",
+          "manage_pay_bill",
+          "manage_payment_method",
+          "manage_upgrade",
+          "membership",
+          "missing",
+          "mistimed_billing_already_returned",
+          "mistimed_billing_never_bought",
+          "out_of_stock_general",
+          "out_of_stock_one_item",
+          "policy",
+          "pricing",
+          "promo_code_invalid",
+          "promo_code_out_of_date",
+          "recover_password",
+          "recover_username",
+          "refund_initiate",
+          "refund_status",
+          "refund_update",
+          "reset_2fa",
+          "return_color",
+          "return_size",
+          "return_stain",
+          "search_results",
+          "shirt",
+          "shopping_cart",
+          "slow_speed",
+          "status",
+          "status_active",
+          "status_credit_missing",
+          "status_delivery_time",
+          "status_due_amount",
+          "status_due_date",
+          "status_mystery_fee",
+          "status_payment_method",
+          "status_quantity",
+          "status_service_added",
+          "status_service_removed",
+          "status_shipping_question",
+          "timing"
+        ],
+        "type": "string"
+      },
+      "promo_given": {
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "type": "string"
+      },
+      "reason": {
+        "enum": [
+          "account_access",
+          "manage_account",
+          "order_issue",
+          "product_defect",
+          "purchase_dispute",
+          "shipping_issue",
+          "single_item_query",
+          "storewide_query",
+          "subscription_inquiry",
+          "troubleshoot_site"
+        ],
+        "type": "string"
+      },
+      "refund_offered": {
+        "enum": [
+          "yes",
+          "no"
+        ],
+        "type": "string"
+      },
+      "resolution": {
+        "enum": [
+          "information_only",
+          "changed_something",
+          "money_back"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "reason",
+      "intent",
+      "identity_verified",
+      "refund_offered",
+      "promo_given",
+      "handed_off",
+      "resolution",
+      "identity_evidence"
+    ],
+    "type": "object"
+  },
+  "models": {
+    "Claude Haiku 5.5": {
+      "model_id": "claude-haiku-5-5",
+      "price": {
+        "cache_write": 0.125,
+        "cached_input": 0.01,
+        "input": 0.1,
+        "output": 0.5
+      },
+      "provider": "anthropic",
+      "reasoning": null
+    },
+    "Clef": {
+      "model_id": "@cf/cloudflare/clef",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.24,
+        "input": 0.24,
+        "output": 0.0
+      },
+      "provider": "cloudflare",
+      "reasoning": null
+    },
+    "Clef-flash (Cloudflare)": {
+      "model_id": "@cf/cloudflare/clef-flash",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.038,
+        "input": 0.038,
+        "output": 0.0
+      },
+      "provider": "cloudflare",
+      "reasoning": null
+    },
+    "GPT-6 Luna": {
+      "model_id": "gpt-6-luna",
+      "price": {
+        "cache_write": 0.125,
+        "cached_input": 0.01,
+        "input": 0.1,
+        "output": 0.5
+      },
+      "provider": "openai",
+      "reasoning": null
+    },
+    "Gemini 3.5 Flash-Lite": {
+      "model_id": "gemini-3.5-flash-lite",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.03,
+        "input": 0.3,
+        "output": 2.5
+      },
+      "provider": "google",
+      "reasoning": null
+    },
+    "Jev 1.13": {
+      "model_id": "jev-1.13.0",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.042,
+        "input": 0.042,
+        "output": 0.0
+      },
+      "provider": "typesafe",
+      "reasoning": null
+    },
+    "Jev 1.14": {
+      "model_id": "jev-1.14.0",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.042,
+        "input": 0.042,
+        "output": 0.0
+      },
+      "provider": "typesafe",
+      "reasoning": null
+    },
+    "Metis (GreenPT)": {
+      "model_id": "metis",
+      "price": {
+        "cache_write": 0.0,
+        "cached_input": 0.13470000000000001,
+        "input": 0.13470000000000001,
+        "output": 0.0
+      },
+      "provider": "greenpt",
+      "reasoning": null
+    }
+  },
+  "not_sent": "temperature, top_p and a system prompt are never sent (provider defaults)",
+  "prompt_fingerprint": "a076adc92eecbd26",
+  "provider_settings": {
+    "anthropic": {
+      "cache_control": {
+        "type": "ephemeral"
+      }
+    },
+    "clef_local": {
+      "device": "cuda",
+      "load_kwargs": {},
+      "revision": null
+    },
+    "cloudflare": {
+      "url": "https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{model}"
+    },
+    "google": {
+      "joiner": "\n"
+    },
+    "greenpt": {
+      "url": "https://api.eu.greenpt.ai/v1/systemone"
+    },
+    "openai": {
+      "cache_breakpoint": {
+        "mode": "explicit"
+      },
+      "prompt_cache_key": "abcd-call-labeling",
+      "store": false
+    },
+    "typesafe": {}
+  },
+  "request_settings": {
+    "max_output_tokens": 16000
+  },
+  "system_one_questions": {
+    "handed_off": {
+      "criteria": {
+        "false": "The agent handled it without passing it on",
+        "true": "The issue was passed to another team"
+      },
+      "instructions": "Did the agent pass the issue to another team (a manager, the purchasing department or the website team)?",
+      "type": "noul"
+    },
+    "identity_verified": {
+      "criteria": {
+        "false": "No formal verification. Pulling up the account from only a name or account ID does not count, and neither does validating a purchase with username, email and order ID",
+        "true": "Formal identity verification was done: three details checked together"
+      },
+      "instructions": "Did the agent run the store's formal identity verification, checking three of the customer's details together: their full name plus two of account ID, order ID, zip code or phone number?",
+      "type": "noul"
+    },
+    "intent": {
+      "criteria": {
+        "bad_price_competitor": "purchase dispute: bad price competitor",
+        "bad_price_yesterday": "purchase dispute: bad price yesterday",
+        "boots": "single item query: boots",
+        "cost": "shipping issue: cost",
+        "credit_card": "troubleshoot site: credit card",
+        "jacket": "single item query: jacket",
+        "jeans": "single item query: jeans",
+        "manage": "shipping issue: manage",
+        "manage_cancel": "order issue: manage cancel",
+        "manage_change_address": "manage account: manage change address",
+        "manage_change_name": "manage account: manage change name",
+        "manage_change_phone": "manage account: manage change phone",
+        "manage_create": "order issue: manage create",
+        "manage_dispute_bill": "subscription inquiry: manage dispute bill",
+        "manage_downgrade": "order issue: manage downgrade",
+        "manage_extension": "subscription inquiry: manage extension",
+        "manage_pay_bill": "subscription inquiry: manage pay bill",
+        "manage_payment_method": "manage account: manage payment method",
+        "manage_upgrade": "order issue: manage upgrade",
+        "membership": "storewide query: membership",
+        "missing": "shipping issue: missing",
+        "mistimed_billing_already_returned": "purchase dispute: mistimed billing already returned",
+        "mistimed_billing_never_bought": "purchase dispute: mistimed billing never bought",
+        "out_of_stock_general": "purchase dispute: out of stock general",
+        "out_of_stock_one_item": "purchase dispute: out of stock one item",
+        "policy": "storewide query: policy",
+        "pricing": "storewide query: pricing",
+        "promo_code_invalid": "purchase dispute: promo code invalid",
+        "promo_code_out_of_date": "purchase dispute: promo code out of date",
+        "recover_password": "account access: recover password",
+        "recover_username": "account access: recover username",
+        "refund_initiate": "product defect: refund initiate",
+        "refund_status": "product defect: refund status",
+        "refund_update": "product defect: refund update",
+        "reset_2fa": "account access: reset two-factor authentication",
+        "return_color": "product defect: return color",
+        "return_size": "product defect: return size",
+        "return_stain": "product defect: return stain",
+        "search_results": "troubleshoot site: search results",
+        "shirt": "single item query: shirt",
+        "shopping_cart": "troubleshoot site: shopping cart",
+        "slow_speed": "troubleshoot site: slow speed",
+        "status": "shipping issue: status",
+        "status_active": "subscription inquiry: status active",
+        "status_credit_missing": "manage account: status credit missing",
+        "status_delivery_time": "order issue: status delivery time",
+        "status_due_amount": "subscription inquiry: status due amount",
+        "status_due_date": "subscription inquiry: status due date",
+        "status_mystery_fee": "order issue: status mystery fee",
+        "status_payment_method": "order issue: status payment method",
+        "status_quantity": "order issue: status quantity",
+        "status_service_added": "manage account: status service added",
+        "status_service_removed": "manage account: status service removed",
+        "status_shipping_question": "manage account: status shipping question",
+        "timing": "storewide query: timing"
+      },
+      "instructions": "What specific request did the customer make?",
+      "type": "choice"
+    },
+    "promo_given": {
+      "criteria": {
+        "false": "No promo code was given",
+        "true": "A promo code was given"
+      },
+      "instructions": "Did the agent give the customer a promo code?",
+      "type": "noul"
+    },
+    "reason": {
+      "criteria": {
+        "account_access": "Can't get into their account: forgot username or password, or two-factor authentication problems",
+        "manage_account": "Wants to change account details or services: address, name, phone, payment method, added or removed services",
+        "order_issue": "Problem with an existing order: unexpected fee, delivery time, payment method, quantity, or wants to change or cancel the order",
+        "product_defect": "Received a faulty or wrong item and wants a return or refund, or asks about a refund",
+        "purchase_dispute": "Disputes a charge or price: price dropped, competitor is cheaper, item out of stock, promo code failed, billed for something not bought or already returned",
+        "shipping_issue": "Shipping problem: package status, change shipping details, missing package, or shipping cost",
+        "single_item_query": "General question about one product (how it works, materials, sizing) with no order problem",
+        "storewide_query": "General question about store-wide policies: pricing, timing, membership, or return policy",
+        "subscription_inquiry": "Question about their subscription or membership: status, due date or amount, paying the bill, or extending it",
+        "troubleshoot_site": "The website isn't working: slow, search results wrong, shopping cart or credit card not working"
+      },
+      "instructions": "Why did the customer contact the store?",
+      "type": "choice"
+    },
+    "refund_offered": {
+      "criteria": {
+        "false": "No refund was issued (refunds may be mentioned, asked about or denied)",
+        "true": "A refund was issued"
+      },
+      "instructions": "Did the agent issue a refund to the customer?",
+      "type": "noul"
+    },
+    "resolution": {
+      "criteria": [
+        "Information only: the agent answered questions, looked things up or passed the issue on, but changed nothing and gave nothing",
+        "Changed something: the agent updated an order or account, reset a password, or placed a purchase, but gave no money back",
+        "Money back: the agent issued a refund or gave the customer a promo code"
+      ],
+      "instructions": "How far did the agent go for the customer?",
+      "type": "score"
+    }
+  }
+}
