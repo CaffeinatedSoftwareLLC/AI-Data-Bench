@@ -5,14 +5,15 @@ then score every current model on the same 1,000 test chats.
 
 Round one (`02_benchmark.ipynb`, `call_log.csv`) stays frozen as published. Round two gets its own notebook and log.
 
-## Where we stopped (2026-10-20, afternoon)
+## Where we stopped (2026-10-20, evening)
 
-1. **The v3 test run is done:** 8 API models x 1,000 chats, merged into `call_log_round2.csv` (not committed yet).
-   The first look is below.
-2. **Next arms:** probe + repeat control, secondary wordings (v0, v2) and the evidence arm (3 LLMs). Then run the
-   full notebook, figures and audit.
-3. **Still not done:** the local Clef-flash (needs a pinned revision, a read of the loader and a quantization
-   setting).
+1. **Every API arm is done:** dev (4 wordings), test (v3), probe and repeat control, the secondary wordings (v0,
+   v2) and the evidence arm (3 LLMs). That's 40,579 rows; $11.29 logged across all round-two calls.
+2. **The log is now `call_log_round2.csv.gz`** (7.3 MB; 90 MB as plain CSV). The notebook reads it with pandas
+   and appends with gzip; checked row for row and fingerprint for fingerprint on 2026-10-20.
+3. **Next:** run the full notebook (all RUN_* flags off), check the figures, then extend `audit_results.py` to the
+   round-two log.
+4. **Still not done:** the local Clef-flash (`INCLUDE_LOCAL = False` until the loader is set up).
 
 ### Test, first look (v3, 1,000 chats; F2 = 0-1, a miss costs 4x a false alarm)
 
@@ -258,7 +259,7 @@ Metis to agree almost exactly if both run BF16; local differences measure quanti
 | 5 | Repeat control: the same 200 originals again x 9 models (finally splits probe flips from noise) | 1,800 | ~$1 |
 
 **Total: about $8-10**, about 21,000 calls. At ~1-2 s a call, one API model is about 45-75 minutes; run providers
-in parallel (one model per command), commit `call_log_round2.csv` after each model. The local run happens at home,
+in parallel (one model per command), commit `call_log_round2.csv.gz` after each model. The local run happens at home,
 not in the cloud.
 
 Spend caps per key (one-day keys, as in round one): Anthropic $3, OpenAI $3, Google $5, TypeSafe $3, Cloudflare $3,
@@ -279,7 +280,7 @@ GreenPT $3 until its price is known.
 ## 5. Build checklist
 
 Built (2026-10-19): `04_round_two.ipynb`, with 02 left untouched. It has the identity wordings `v0`/`v1`,
-`call_log_round2.csv`, `figures/round2/`, the 9 models with per-provider fingerprints, the Cloudflare / Metis /
+`call_log_round2.csv.gz`, `figures/round2/`, the 9 models with per-provider fingerprints, the Cloudflare / Metis /
 local callers, the dev section, before/after, three hosts, the repeat control and dev-chosen thresholds. Tested end
 to end with fake models.
 
@@ -302,7 +303,7 @@ Before the first real run:
    identity verified, resolution "changed something"), only Luna said "verified" under v1; every model said
    "information only". One chat proves the wiring, not the wording. Local model after item 3.
 5. Dev (`RUN_DEV = True`), then read v1's errors. Write v2 only if needed. Set `FROZEN_IDENTITY_VERSION`.
-6. Test, probe, repeat control. Commit `call_log_round2.csv` after each model.
+6. Test, probe, repeat control. Commit `call_log_round2.csv.gz` after each model.
 7. Extend `audit_results.py` to the round-two log before publishing.
 
 ## Open decisions

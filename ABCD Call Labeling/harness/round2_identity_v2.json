@@ -3,7 +3,6 @@
     "Claude Haiku 5.5": "16278e0a74083e3e",
     "Clef": "36110c12865a5dd1",
     "Clef-flash (Cloudflare)": "820c2c496672c9e1",
-    "Clef-flash (local)": "1538c0029cbc6570",
     "GPT-6 Luna": "08bb2aa032967dfd",
     "Gemini 3.5 Flash-Lite": "55391b4145ba762a",
     "Jev 1.13": "1265466b97557905",
@@ -172,17 +171,6 @@
         "output": 0.0
       },
       "provider": "cloudflare",
-      "reasoning": null
-    },
-    "Clef-flash (local)": {
-      "model_id": "Cloudflare/clef-flash",
-      "price": {
-        "cache_write": 0.0,
-        "cached_input": 0.0,
-        "input": 0.0,
-        "output": 0.0
-      },
-      "provider": "clef_local",
       "reasoning": null
     },
     "GPT-6 Luna": {
