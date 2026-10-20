@@ -5,16 +5,39 @@ then score every current model on the same 1,000 test chats.
 
 Round one (`02_benchmark.ipynb`, `call_log.csv`) stays frozen as published. Round two gets its own notebook and log.
 
-## Where we stopped (2026-10-20)
+## Where we stopped (2026-10-20, afternoon)
 
-1. **Dev is complete:** 8 API models x 4 wordings x 300 chats. **v3 is frozen.** The rule change is disclosed in
-   section 10 and the Caveats.
-2. **Next: the test run.** 1,000 chats x 8 API models with v3, then the probe and repeat control, then the
-   secondary arms (v0, v2) and the evidence arm (3 LLMs). Roughly 21,000 calls, about $8-10. Cloudflare's pace of
-   3.1 s per call makes Clef the slowest, about 1.5 h per arm.
-3. **Not yet:** the local Clef-flash. It needs a pinned revision, a read of `joint_schema_model.py` and a
-   quantization setting.
-4. Nothing is committed: `04_round_two.ipynb`, `DATABENCH_2.md` and `call_log_round2.csv` (10,378 dev rows, including the logged 429 failures).
+1. **The v3 test run is done:** 8 API models x 1,000 chats, merged into `call_log_round2.csv` (not committed yet).
+   The first look is below.
+2. **Next arms:** probe + repeat control, secondary wordings (v0, v2) and the evidence arm (3 LLMs). Then run the
+   full notebook, figures and audit.
+3. **Still not done:** the local Clef-flash (needs a pinned revision, a read of the loader and a quantization
+   setting).
+
+### Test, first look (v3, 1,000 chats; F2 = 0-1, a miss costs 4x a false alarm)
+
+| Model | Identity F2, round one → two | False alarms | Misses |
+|---|---|---|---|
+| Claude Haiku 5.5 | 0.803 → **0.904** | 394 → 96 | 5 → 19 |
+| GPT-6 Luna | 0.807 → **0.908** | 389 → 53 | 4 → 27 |
+| Gemini 3.5 Flash-Lite | 0.810 → 0.849 | 381 → 94 | 4 → 43 |
+| Jev 1.13 | 0.775 → 0.694 (worse) | 198 → 6 | 55 → 121 |
+| Jev 1.14 | - → 0.760 | 6 | 96 |
+| Clef | - → 0.899 | 42 | 33 |
+| Clef-flash (Cloudflare) | - → 0.893 | 30 | 38 |
+| Metis (GreenPT) | - → 0.900 | 26 | 36 |
+
+- The trained model (8,006 labels) is still best on identity (0.922); the regex scores 0.840.
+- **The fix held for Haiku and Luna** (+10 F2 points each, clear after correction), but for Flash-Lite only at the
+  uncorrected 95% level. It backfired for Jev 1.13 (-8.1, clear): Jev now says "verified" almost never (6 false
+  alarms) and misses 121.
+- **Collateral check passed:** no other question moved after correction. Flash-Lite's reason (+1.5) and resolution
+  (-1.4) move at the uncorrected 95% level only.
+- Jev 1.14 vs 1.13: only identity differs (1.14 better by 6.6, clear).
+- Clef-flash and Metis are weak on handoffs (-17 and -20 F2 points vs Jev 1.14, clear); Clef isn't.
+- Cost per 1,000: Jev and Clef-flash $0.10, Luna $0.13, Haiku $0.17, Metis $0.35, Clef $0.63, Flash-Lite $0.68.
+  Metis reports 13.9 Wh per 1,000 chats.
+- Median latency: Jev 0.09-0.12 s; Clef 0.68 s, Metis 0.84 s, Clef-flash 0.95 s; LLMs 1.0-2.0 s.
 
 ## Reddit feedback: what round two tests (added 2026-10-20)
 
