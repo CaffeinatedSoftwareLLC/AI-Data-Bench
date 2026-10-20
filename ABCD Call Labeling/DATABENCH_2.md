@@ -11,9 +11,41 @@ Round one (`02_benchmark.ipynb`, `call_log.csv`) stays frozen as published. Roun
    v2) and the evidence arm (3 LLMs). That's 40,579 rows; $11.29 logged across all round-two calls.
 2. **The log is now `call_log_round2.csv.gz`** (7.3 MB; 90 MB as plain CSV). The notebook reads it with pandas
    and appends with gzip; checked row for row and fingerprint for fingerprint on 2026-10-20.
-3. **Next:** run the full notebook (all RUN_* flags off), check the figures, then extend `audit_results.py` to the
-   round-two log.
+3. **Done:** the full notebook ran with no API calls; outputs, `figures/round2/` and `results/round2_*.csv` are saved.
+   **Next:** extend `audit_results.py` to the round-two log, then update the notebook's Caveats with these results.
 4. **Still not done:** the local Clef-flash (`INCLUDE_LOCAL = False` until the loader is set up).
+
+### Full results (2026-10-20, notebook executed; F2 = 0-1, a miss costs 4x a false alarm)
+
+**Identity on test by wording** (F2; false alarms / misses out of 1,000):
+
+| Model | v0 today | v0 round one | v2 (avisangle) | v3 (headline) |
+|---|---|---|---|---|
+| Claude Haiku 5.5 | 0.804 (398 / 4) | 0.803 (394 / 5) | 0.446 (98 / 199) | **0.904** (96 / 19) |
+| GPT-6 Luna | 0.809 (389 / 3) | 0.807 (389 / 4) | 0.474 (80 / 191) | **0.908** (53 / 27) |
+| Gemini 3.5 Flash-Lite | 0.808 (387 / 4) | 0.810 (381 / 4) | 0.771 (284 / 41) | **0.849** (94 / 43) |
+| Jev 1.13 | **0.767** (196 / 59) | 0.775 (198 / 55) | 0.189 (28 / 288) | 0.694 (6 / 121) |
+| Jev 1.14 | **0.821** (313 / 12) | - | 0.202 (32 / 284) | 0.760 (6 / 96) |
+| Clef | 0.811 (380 / 4) | - | 0.517 (111 / 172) | **0.899** (42 / 33) |
+| Clef-flash (Cloudflare) | 0.815 (369 / 4) | - | 0.320 (61 / 245) | **0.893** (30 / 38) |
+| Metis (GreenPT) | 0.812 (381 / 3) | - | 0.381 (71 / 224) | **0.900** (26 / 36) |
+
+- **v3 helps everyone except Jev.** Jev answers the v3 question very conservatively at its 0.5 threshold (6 false
+  alarms, ~100 misses). With a threshold chosen on dev for 90% precision, Jev 1.14 reaches 0.95 precision and
+  0.83 recall on test: the probability is fine, the default cut-off isn't.
+- **v0 today ≈ v0 in round one** (within 0.008 F2): the models didn't drift between rounds, so the change is the
+  wording.
+- **v2 (avisangle's wording) fails on test too**, as on dev: misses jump to 170-290.
+- **Evidence arm (xapep's check) barely helps.** The verbatim-quote check removed 2 / 5 / 0 false yeses for Haiku /
+  Luna / Flash-Lite, and cost 3 / 6 / 1 true yeses. The false yeses quote real lines (e.g. a username), so the
+  quote is found and passes. Asking for a quote changed Flash-Lite by itself: false yeses 94 → 43, misses
+  43 → 100.
+- **Same weights, two hosts:** Cloudflare's Clef-flash and Metis agree on 95.7-100% of labels, and no score
+  difference is significant. But P(yes) can differ by up to 0.45 on one chat (mean gap 0.004-0.04), so the two
+  serve the weights somewhat differently. Metis: 13.9 Wh per 1,000 chats, $0.35 vs Cloudflare's $0.10.
+- **Probe vs repeat control:** the Clef family is deterministic (0 label flips on a plain repeat), so its swap
+  flips are real (Clef 15, Clef-flash 29, Metis 10 of 1,183). Jev flips 9-11 on a plain repeat. For the LLMs, swap
+  flips (34-37) are about the same as repeat flips (26-39), i.e. noise. No model's mean accuracy moved detectably.
 
 ### Test, first look (v3, 1,000 chats; F2 = 0-1, a miss costs 4x a false alarm)
 
