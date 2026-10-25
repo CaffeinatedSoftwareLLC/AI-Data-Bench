@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-abaf3ff88828414d0fc937345d13f16a"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "arm", "sort": ["ProtectAI v2", "PIGuard", "Jev 1.14", "Metis (GreenPT)", "Claude Haiku 5.5", "GPT-6 Luna", "Narrow", "TF-IDF + LR"], "title": null, "type": "nominal"}, "tooltip": [{"field": "arm", "type": "nominal"}, {"field": "transform", "type": "nominal"}, {"field": "delta", "format": ".3f", "type": "quantitative"}], "x": {"field": "transform", "sort": ["homoglyph", "zero_width", "base64", "rot13", "guard_prefix"], "title": null, "type": "nominal"}, "xOffset": {"field": "arm", "sort": ["ProtectAI v2", "PIGuard", "Jev 1.14", "Metis (GreenPT)", "Claude Haiku 5.5", "GPT-6 Luna", "Narrow", "TF-IDF + LR"], "type": "nominal"}, "y": {"field": "delta", "title": "Recall lost vs clean (at t_1pct)", "type": "quantitative"}}, "height": 260, "title": "Evasion: how much recall each transform costs (500 LLMail attacks)", "width": 620, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-abaf3ff88828414d0fc937345d13f16a": [{"arm": "ProtectAI v2", "transform": "homoglyph", "delta": -0.16399999999999992}, {"arm": "PIGuard", "transform": "homoglyph", "delta": 0.242}, {"arm": "Jev 1.14", "transform": "homoglyph", "delta": -0.07799999999999996}, {"arm": "Metis (GreenPT)", "transform": "homoglyph", "delta": -0.006000000000000005}, {"arm": "Claude Haiku 5.5", "transform": "homoglyph", "delta": 0.010000000000000009}, {"arm": "GPT-6 Luna", "transform": "homoglyph", "delta": -0.05400000000000005}, {"arm": "Narrow", "transform": "homoglyph", "delta": 0.0}, {"arm": "TF-IDF + LR", "transform": "homoglyph", "delta": 0.04400000000000004}, {"arm": "ProtectAI v2", "transform": "zero_width", "delta": -0.20799999999999996}, {"arm": "PIGuard", "transform": "zero_width", "delta": 0.432}, {"arm": "Jev 1.14", "transform": "zero_width", "delta": -0.07199999999999995}, {"arm": "Metis (GreenPT)", "transform": "zero_width", "delta": 0.05999999999999994}, {"arm": "Claude Haiku 5.5", "transform": "zero_width", "delta": 0.2659999999999999}, {"arm": "GPT-6 Luna", "transform": "zero_width", "delta": -0.05800000000000005}, {"arm": "Narrow", "transform": "zero_width", "delta": 0.0}, {"arm": "TF-IDF + LR", "transform": "zero_width", "delta": 0.06999999999999995}, {"arm": "ProtectAI v2", "transform": "base64", "delta": -0.20799999999999996}, {"arm": "PIGuard", "transform": "base64", "delta": -0.556}, {"arm": "Jev 1.14", "transform": "base64", "delta": -0.136}, {"arm": "Metis (GreenPT)", "transform": "base64", "delta": 0.742}, {"arm": "Claude Haiku 5.5", "transform": "base64", "delta": 0.46799999999999997}, {"arm": "GPT-6 Luna", "transform": "base64", "delta": -0.06000000000000005}, {"arm": "Narrow", "transform": "base64", "delta": 0.0}, {"arm": "TF-IDF + LR", "transform": "base64", "delta": 0.008000000000000007}, {"arm": "ProtectAI v2", "transform": "rot13", "delta": -0.20799999999999996}, {"arm": "PIGuard", "transform": "rot13", "delta": -0.35400000000000004}, {"arm": "Jev 1.14", "transform": "rot13", "delta": -0.18799999999999994}, {"arm": "Metis (GreenPT)", "transform": "rot13", "delta": 0.702}, {"arm": "Claude Haiku 5.5", "transform": "rot13", "delta": 0.938}, {"arm": "GPT-6 Luna", "transform": "rot13", "delta": -0.06799999999999995}, {"arm": "Narrow", "transform": "rot13", "delta": 0.0}, {"arm": "TF-IDF + LR", "transform": "rot13", "delta": 0.31999999999999995}, {"arm": "ProtectAI v2", "transform": "guard_prefix", "delta": -0.09399999999999997}, {"arm": "PIGuard", "transform": "guard_prefix", "delta": -0.298}, {"arm": "Jev 1.14", "transform": "guard_prefix", "delta": -0.21599999999999997}, {"arm": "Metis (GreenPT)", "transform": "guard_prefix", "delta": -0.0040000000000000036}, {"arm": "Claude Haiku 5.5", "transform": "guard_prefix", "delta": -0.03400000000000003}, {"arm": "GPT-6 Luna", "transform": "guard_prefix", "delta": -0.126}, {"arm": "Narrow", "transform": "guard_prefix", "delta": 0.0}, {"arm": "TF-IDF + LR", "transform": "guard_prefix", "delta": -0.010000000000000009}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

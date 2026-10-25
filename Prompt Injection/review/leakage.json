@@ -1,0 +1,134 @@
+{
+  "manifest_differences": {
+    "item_id": 0,
+    "tier": 0,
+    "split": 0,
+    "label": 0,
+    "group": 0,
+    "text_hash": 0,
+    "n_tokens": 0,
+    "truncated": 0
+  },
+  "funnel": {
+    "raw submissions (dataset card)": {
+      "Phase1": 370724,
+      "Phase2": 90916
+    },
+    "labelled unique submissions": 198044,
+    "attack_attempt counts": {
+      "True": 148383,
+      "Unclear": 37707,
+      "False": 11952,
+      "['False', 'True', 'False', 'False']": 1,
+      "1.0": 1
+    },
+    "judged attacks (attack_attempt True)": 148383,
+    "after exact dedupe (normalised)": 131292,
+    "near-duplicate clusters (Jaccard >= 0.8)": 74636,
+    "largest cluster": 19561,
+    "after near dedupe": 74636
+  },
+  "promptshield": {
+    "test rows": 23516,
+    "test rows whose normalised text is in train (dropped)": 6,
+    "test benign share": 0.7242
+  },
+  "actual_train_rows": 11454,
+  "all_train_vs_dev_text": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "all_train_vs_dev_norm": {
+    "rows": 25,
+    "unique": 23,
+    "by_tier": "{('dev', 0): 1, ('dev', 1): 24}",
+    "ids": [
+      "promptshield_validation:2",
+      "promptshield_validation:56",
+      "promptshield_validation:115",
+      "promptshield_validation:116",
+      "promptshield_validation:245",
+      "promptshield_validation:293",
+      "promptshield_validation:313",
+      "promptshield_validation:321",
+      "promptshield_validation:346",
+      "promptshield_validation:386",
+      "promptshield_validation:397",
+      "promptshield_validation:412",
+      "promptshield_validation:418",
+      "promptshield_validation:440",
+      "promptshield_validation:506",
+      "promptshield_validation:673",
+      "promptshield_validation:686",
+      "promptshield_validation:775",
+      "promptshield_validation:829",
+      "promptshield_validation:836",
+      "promptshield_validation:858",
+      "promptshield_validation:882",
+      "promptshield_validation:940",
+      "promptshield_validation:945",
+      "promptshield_train:9803"
+    ]
+  },
+  "all_train_vs_test_text": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "all_train_vs_test_norm": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "actual_training_vs_dev_text": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "actual_training_vs_dev_norm": {
+    "rows": 7,
+    "unique": 7,
+    "by_tier": "{('dev', 0): 1, ('dev', 1): 6}",
+    "ids": [
+      "promptshield_validation:56",
+      "promptshield_validation:115",
+      "promptshield_validation:313",
+      "promptshield_validation:506",
+      "promptshield_validation:686",
+      "promptshield_validation:882",
+      "promptshield_train:9803"
+    ]
+  },
+  "actual_training_vs_test_text": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "actual_training_vs_test_norm": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "dev_vs_test_text": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "dev_vs_test_norm": {
+    "rows": 0,
+    "unique": 0,
+    "by_tier": "{}",
+    "ids": []
+  },
+  "cross_split_groups": {},
+  "evasion_non_test_bases": [],
+  "train_hash": "466458c27134b8ca"
+}

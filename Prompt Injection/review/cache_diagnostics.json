@@ -1,0 +1,182 @@
+{
+  "ProtectAI v2": {
+    "rows": 24705,
+    "fingerprints": {
+      "4c7bb1582d2c077d": 24705
+    },
+    "other_fp_rows": 0,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 30,
+    "dev_tied": 1,
+    "dev_ge_count": 31,
+    "lower_threshold": 0.008985428139567375,
+    "LLMail_recall_at_lower": 0.7598,
+    "NotInject_FPR_at_lower": 0.4808259587020649
+  },
+  "PIGuard": {
+    "rows": 24705,
+    "fingerprints": {
+      "b50bfa65e89f2b67": 24705
+    },
+    "other_fp_rows": 0,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 30,
+    "dev_tied": 1,
+    "dev_ge_count": 31,
+    "lower_threshold": 0.7972412705421448,
+    "LLMail_recall_at_lower": 0.468,
+    "NotInject_FPR_at_lower": 0.10324483775811209
+  },
+  "Jev 1.14": {
+    "rows": 25105,
+    "fingerprints": {
+      "7fe30bccd38087be": 24705,
+      "945b0a6c46c94327": 400
+    },
+    "other_fp_rows": 400,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 27,
+    "dev_tied": 4,
+    "dev_ge_count": 31,
+    "lower_threshold": 0.1,
+    "LLMail_recall_at_lower": 0.844,
+    "NotInject_FPR_at_lower": 0.1504424778761062
+  },
+  "Metis (GreenPT)": {
+    "rows": 25305,
+    "fingerprints": {
+      "f00822fc01f4fda6": 24905,
+      "9e817cdb1a9af597": 400
+    },
+    "other_fp_rows": 400,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 200,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 30,
+    "dev_tied": 1,
+    "dev_ge_count": 31,
+    "lower_threshold": 0.077,
+    "LLMail_recall_at_lower": 0.8224,
+    "NotInject_FPR_at_lower": 0.1976401179941003
+  },
+  "Claude Haiku 5.5": {
+    "rows": 25105,
+    "fingerprints": {
+      "1d2f2d9ffcefdea4": 24705,
+      "02bdacbe156d9742": 400
+    },
+    "other_fp_rows": 400,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 1445,
+    "invalid_nonzero": 0,
+    "dev_above": 21,
+    "dev_tied": 40,
+    "dev_ge_count": 61,
+    "lower_threshold": 0.05,
+    "LLMail_recall_at_lower": 0.9538,
+    "NotInject_FPR_at_lower": 0.13864306784660768
+  },
+  "GPT-6 Luna": {
+    "rows": 25105,
+    "fingerprints": {
+      "9c800ed1725bb406": 24705,
+      "bb7ae0cc446cc0e7": 400
+    },
+    "other_fp_rows": 400,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 13,
+    "dev_tied": 2987,
+    "dev_ge_count": 3000,
+    "lower_threshold": null,
+    "LLMail_recall_at_lower": null,
+    "NotInject_FPR_at_lower": null
+  },
+  "Narrow": {
+    "rows": 24705,
+    "fingerprints": {
+      "ebfc0805d4c5f621": 24705
+    },
+    "other_fp_rows": 0,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 29,
+    "dev_tied": 2,
+    "dev_ge_count": 31,
+    "lower_threshold": 2.8409745937096886e-05,
+    "LLMail_recall_at_lower": 1.0,
+    "NotInject_FPR_at_lower": 0.6312684365781711
+  },
+  "TF-IDF + LR": {
+    "rows": 24705,
+    "fingerprints": {
+      "e32ba36794552103": 24705
+    },
+    "other_fp_rows": 0,
+    "current_error_rows": 0,
+    "wrong_hash_current": 0,
+    "selected": 24705,
+    "dev": 4503,
+    "test": 20202,
+    "eligible_repeat_items": 0,
+    "append_vs_ts_score_differences": 0,
+    "invalid": 0,
+    "invalid_nonzero": 0,
+    "dev_above": 30,
+    "dev_tied": 1,
+    "dev_ge_count": 31,
+    "lower_threshold": 0.430966197702676,
+    "LLMail_recall_at_lower": 0.9862,
+    "NotInject_FPR_at_lower": 0.008849557522123894
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "config": {
+    "base": "answerdotai/ModernBERT-base",
+    "base_revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+    "max_length": 1024,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "epochs": 3,
+    "bf16": true,
+    "warmup_ratio": 0.06,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "selection": "best dev AUROC per epoch"
+  },
+  "dev_auroc": 0.9999858888888888,
+  "epochs": [
+    {
+      "eval_loss": 0.0118586216121912,
+      "eval_auroc": 0.9999494444444444,
+      "eval_runtime": 20.684,
+      "eval_samples_per_second": 217.56,
+      "eval_steps_per_second": 6.817,
+      "epoch": 1.0,
+      "step": 715
+    },
+    {
+      "eval_loss": 0.007988094352185726,
+      "eval_auroc": 0.9999734444444444,
+      "eval_runtime": 19.574,
+      "eval_samples_per_second": 229.897,
+      "eval_steps_per_second": 7.203,
+      "epoch": 2.0,
+      "step": 1430
+    },
+    {
+      "eval_loss": 0.006530488841235638,
+      "eval_auroc": 0.9999858888888888,
+      "eval_runtime": 20.1163,
+      "eval_samples_per_second": 223.7,
+      "eval_steps_per_second": 7.009,
+      "epoch": 3.0,
+      "step": 2145
+    },
+    {
+      "eval_loss": 0.006530488841235638,
+      "eval_auroc": 0.9999858888888888,
+      "eval_runtime": 21.0178,
+      "eval_samples_per_second": 214.105,
+      "eval_steps_per_second": 6.709,
+      "epoch": 3.0,
+      "step": 2145
+    }
+  ],
+  "train_rows": 11432,
+  "train_attacks": 4481,
+  "train_hash": "9587f900b3e6ee32",
+  "config_fingerprint": "f81faeb5abd7d98f"
+}

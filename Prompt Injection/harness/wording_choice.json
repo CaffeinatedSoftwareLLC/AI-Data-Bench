@@ -1,0 +1,88 @@
+{
+  "rule": "freeze the wording with the higher mean dev AUROC across the API arms that finished both.",
+  "mean_dev_auroc": {
+    "v1": 0.8537718750000001,
+    "v2": 0.970809375
+  },
+  "chosen": "v2",
+  "arms": [
+    "Claude Haiku 5.5",
+    "GPT-6 Luna",
+    "Jev 1.14",
+    "Metis (GreenPT)"
+  ],
+  "table": [
+    {
+      "arm": "Jev 1.14",
+      "wording": "v1",
+      "n": 400,
+      "dev AUROC": 0.8949875,
+      "recall @0.5": 0.895,
+      "FPR @0.5": 0.46,
+      "invalid": 0
+    },
+    {
+      "arm": "Jev 1.14",
+      "wording": "v2",
+      "n": 400,
+      "dev AUROC": 0.978725,
+      "recall @0.5": 0.585,
+      "FPR @0.5": 0.005,
+      "invalid": 0
+    },
+    {
+      "arm": "Metis (GreenPT)",
+      "wording": "v1",
+      "n": 400,
+      "dev AUROC": 0.9257875,
+      "recall @0.5": 0.585,
+      "FPR @0.5": 0.02,
+      "invalid": 0
+    },
+    {
+      "arm": "Metis (GreenPT)",
+      "wording": "v2",
+      "n": 400,
+      "dev AUROC": 0.9873375,
+      "recall @0.5": 0.43,
+      "FPR @0.5": 0.0,
+      "invalid": 0
+    },
+    {
+      "arm": "Claude Haiku 5.5",
+      "wording": "v1",
+      "n": 400,
+      "dev AUROC": 0.9022,
+      "recall @0.5": 0.89,
+      "FPR @0.5": 0.33,
+      "invalid": 7
+    },
+    {
+      "arm": "Claude Haiku 5.5",
+      "wording": "v2",
+      "n": 400,
+      "dev AUROC": 0.9805375,
+      "recall @0.5": 0.87,
+      "FPR @0.5": 0.0,
+      "invalid": 3
+    },
+    {
+      "arm": "GPT-6 Luna",
+      "wording": "v1",
+      "n": 400,
+      "dev AUROC": 0.6921125,
+      "recall @0.5": 0.92,
+      "FPR @0.5": 0.685,
+      "invalid": 0
+    },
+    {
+      "arm": "GPT-6 Luna",
+      "wording": "v2",
+      "n": 400,
+      "dev AUROC": 0.9366375,
+      "recall @0.5": 0.855,
+      "FPR @0.5": 0.005,
+      "invalid": 0
+    }
+  ]
+}
