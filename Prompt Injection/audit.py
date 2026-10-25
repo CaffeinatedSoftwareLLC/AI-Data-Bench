@@ -108,8 +108,8 @@ for name in adapters.ALL_ARMS:
         check(f"{name}: notebook recall@t_1pct matches", abs(row["recall LLMail @t_1pct"] - recall) < 1e-9)
 
 # 5. Committed artifacts exist
-for path in ["harness/round3_harness.json", "results/summary.csv", "results/summary_table.html", "figures/roc_by_tier.png",
-             "figures/evasion_delta.png", "data/custom_injections.jsonl"]:
+for path in ["harness/round3_harness.json", "results/summary.csv", "results/summary_table.html", "figures/1_report_card.png", "figures/2_caught_vs_flagged.png", "figures/3_evasion_tricks.png",
+             "figures/7_roc_by_tier.png", "data/custom_injections.jsonl"]:
     check(f"exists: {path}", (HERE / path).exists())
 
 failed = [c for c in checks if not c["ok"]]

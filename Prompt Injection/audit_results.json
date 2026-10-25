@@ -356,12 +356,22 @@
       "detail": ""
     },
     {
-      "check": "exists: figures/roc_by_tier.png",
+      "check": "exists: figures/1_report_card.png",
       "ok": true,
       "detail": ""
     },
     {
-      "check": "exists: figures/evasion_delta.png",
+      "check": "exists: figures/2_caught_vs_flagged.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exists: figures/3_evasion_tricks.png",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "exists: figures/7_roc_by_tier.png",
       "ok": true,
       "detail": ""
     },

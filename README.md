@@ -56,6 +56,10 @@ the notebook's Caveats.
 (benign prompts full of words like "ignore"), AgentDojo tool outputs, five evasion tricks, and 40 items of our own.
 Thresholds chosen on dev, test scored once. AUROC is 0.5 for a coin flip and 1.0 for a perfect split.
 
+![Report card: what each guard catches, wrongly flags and costs](Prompt%20Injection/figures/1_report_card.png)
+
+![Caught vs wrongly flagged, per guard](Prompt%20Injection/figures/2_caught_vs_flagged.png)
+
 | Guard | Attack emails vs benign emails (AUROC) | Attacked vs clean tool outputs (AUROC) | Benign "ignore"-style prompts flagged | Recall lost to base64 / rot13 | $ per 1,000 |
 |---|---|---|---|---|---|
 | Jev 1.14 | 0.999 | 1.000 | 12.7% | none* | $0.025 |
