@@ -1,0 +1,9 @@
+arm,dev_above,dev_tied,oracle,oracle_test_FPR,oracle_tied,test_repeated_items,dev_repeated_items,latency_rows,invalid_test
+ProtectAI v2,30,1,0.9964063763618469,0.01,1,0,0,200,0
+PIGuard,30,1,0.9961155652999878,0.01,1,0,0,200,0
+Jev 1.14,27,4,0.37,0.00975,6,0,0,200,0
+Metis (GreenPT),30,1,0.12250000000000001,0.01,1,0,200,200,0
+Claude Haiku 5.5,21,40,0.9,0.009,14,0,0,200,1409
+GPT-6 Luna,13,2987,0.97,0.009875,10,0,0,200,0
+Narrow,29,2,1.0,0.0,152,0,0,200,0
+TF-IDF + LR,30,1,0.6360219838944315,0.01,1,0,0,200,0

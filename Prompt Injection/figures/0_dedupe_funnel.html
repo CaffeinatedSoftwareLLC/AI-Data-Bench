@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"background": "#fcfcfb", "font": "Segoe UI, Helvetica Neue, Arial, sans-serif", "padding": 16, "view": {"stroke": null}, "title": {"anchor": "start", "fontSize": 17, "fontWeight": 700, "color": "#0b0b0b", "subtitleColor": "#52514e", "subtitleFontSize": 13, "subtitlePadding": 6, "offset": 14}, "axis": {"labelColor": "#52514e", "titleColor": "#52514e", "labelFontSize": 12, "titleFontSize": 12, "titleFontWeight": 500, "gridColor": "#e1e0d9", "domainColor": "#c3c2b7", "tickColor": "#c3c2b7"}, "header": {"labelFontSize": 13, "labelFontWeight": 700, "labelColor": "#0b0b0b", "labelAnchor": "start", "titleFontSize": 0}, "legend": {"labelColor": "#0b0b0b", "titleColor": "#52514e", "labelFontSize": 12, "titleFontSize": 12, "symbolStrokeWidth": 2, "orient": "bottom", "direction": "horizontal", "columns": 4, "symbolSize": 110}}, "layer": [{"mark": {"type": "bar", "color": "#898781", "cornerRadiusEnd": 4, "height": 24}, "encoding": {"tooltip": [{"field": "step", "type": "nominal"}, {"field": "rows", "format": ",", "type": "quantitative"}, {"field": "how", "type": "nominal"}], "x": {"axis": {"format": "~s", "grid": true, "title": "LLMail rows"}, "field": "rows", "type": "quantitative"}, "y": {"axis": {"domain": false, "labelColor": "#0b0b0b", "labelFontSize": 13, "labelLimit": 260, "labelPadding": 10, "ticks": false}, "field": "step", "sort": ["Submitted to the challenge", "Unique, with a judge's verdict", "Judged to be an attack", "No exact repeats", "No near-copies (80%+ overlap)"], "title": null, "type": "nominal"}}}, {"mark": {"type": "text", "align": "left", "color": "#52514e", "dx": 8, "fontSize": 12}, "encoding": {"text": {"field": "note", "type": "nominal"}, "x": {"field": "rows", "type": "quantitative"}, "y": {"axis": {"domain": false, "labelColor": "#0b0b0b", "labelFontSize": 13, "labelLimit": 260, "labelPadding": 10, "ticks": false}, "field": "step", "sort": ["Submitted to the challenge", "Unique, with a judge's verdict", "Judged to be an attack", "No exact repeats", "No near-copies (80%+ overlap)"], "title": null, "type": "nominal"}}}], "data": {"name": "data-30be86489e70d49a1ec258d2695555c0"}, "height": {"step": 42}, "title": {"text": "From 462k challenge submissions to 74.6k distinct attacks", "subtitle": ["Each step removes copies so no near-duplicate of a test email can sit in training or dev. Percentages: rows removed by that step."]}, "width": 520, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-30be86489e70d49a1ec258d2695555c0": [{"step": "Submitted to the challenge", "rows": 461640, "how": "", "order": 0, "value": "461,640", "drop": "", "note": "461,640   "}, {"step": "Unique, with a judge's verdict", "rows": 198044, "how": "the challenge's own exact dedupe", "order": 1, "value": "198,044", "drop": "\u221257%", "note": "198,044   \u221257%  the challenge's own exact dedupe"}, {"step": "Judged to be an attack", "rows": 148383, "how": "drops Unclear and not-an-attack", "order": 2, "value": "148,383", "drop": "\u221225%", "note": "148,383   \u221225%  drops Unclear and not-an-attack"}, {"step": "No exact repeats", "rows": 131292, "how": "ignoring case, punctuation, digits", "order": 3, "value": "131,292", "drop": "\u221212%", "note": "131,292   \u221212%  ignoring case, punctuation, digits"}, {"step": "No near-copies (80%+ overlap)", "rows": 74636, "how": "~5.5% still have a near-copy (re-check)", "order": 4, "value": "74,636", "drop": "\u221243%", "note": "74,636   \u221243%  ~5.5% still have a near-copy (re-check)"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

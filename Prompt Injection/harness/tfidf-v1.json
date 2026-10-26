@@ -1,0 +1,37 @@
+{
+  "config": {
+    "char": {
+      "analyzer": "char_wb",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 3,
+      "max_features": 300000,
+      "sublinear_tf": true
+    },
+    "word": {
+      "analyzer": "word",
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 2,
+      "max_features": 200000,
+      "sublinear_tf": true
+    },
+    "C_grid": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "selection": "best dev AUROC",
+    "seed": 42
+  },
+  "chosen_C": 4.0,
+  "dev_auroc": 0.9909753333333333,
+  "train_rows": 11432,
+  "train_attacks": 4481,
+  "train_hash": "9587f900b3e6ee32",
+  "config_fingerprint": "4c941abdcebabb8a"
+}

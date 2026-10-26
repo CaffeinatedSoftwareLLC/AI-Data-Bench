@@ -18,6 +18,7 @@ Not sponsored by any of the model providers tested.
 | `IBM Attrition/` | Which employees are about to leave? | Random Forest vs Claude Sonnet 5, GPT-6 Sol, Gemini 3.8 Flash vs Jev | `attrition_bench.ipynb` |
 | `ABCD Call Labeling/`, round one | Label 1,000 support chats: why they called, what the agent did, how far it went | Claude Haiku 4.5 and 5.5, GPT-6 Luna, Gemini 3.5 Flash-Lite, Jev 1.13, Laya, a trained TF-IDF model, a regex | `01_explore`, `02_benchmark`, `03_haiku_comparison` |
 | `ABCD Call Labeling/`, round two | Same chats, one question fixed, newer decision models | Haiku 5.5, Luna, Flash-Lite, Jev 1.13 and 1.14, Cloudflare's Clef and Clef-flash, GreenPT's Metis | `04_round_two` (plan and results in `DATABENCH_2.md`) |
+| `Prompt Injection/` | Does this email, tool output or message contain instructions aimed at the AI? | ProtectAI v2, PIGuard, Jev 1.14, Metis, Haiku 5.5, Luna, our fine-tuned ModernBERT ("Narrow"), TF-IDF | `01_injection_bench` (plan in `PLAN.md`) |
 
 ## Round two at a glance
 
@@ -48,6 +49,37 @@ Identity F2 is a 0-1 score where a miss counts 4x a false alarm.
 
 The full write-up, including what was changed along the way and why, is in `ABCD Call Labeling/DATABENCH_2.md` and
 the notebook's Caveats.
+
+## Prompt injection at a glance
+
+24,705 items per guard: real LLMail-Inject attack emails, LLMail's own benign emails, PromptShield, NotInject
+(benign prompts full of words like "ignore"), AgentDojo tool outputs, five evasion tricks, and 40 items of our own.
+Thresholds chosen on dev, test scored once. AUROC is 0.5 for a coin flip and 1.0 for a perfect split.
+
+![Report card: what each guard catches, wrongly flags and costs](Prompt%20Injection/figures/1_report_card.png)
+
+![Caught vs wrongly flagged, per guard](Prompt%20Injection/figures/2_caught_vs_flagged.png)
+
+| Guard | Attack emails vs benign emails (AUROC) | Attacked vs clean tool outputs (AUROC) | Benign "ignore"-style prompts flagged | Recall lost to base64 / rot13 | $ per 1,000 |
+|---|---|---|---|---|---|
+| Jev 1.14 | 0.999 | 1.000 | 12.7% | none* | $0.025 |
+| Metis (GreenPT) | 0.998 | 1.000 | 19.8% | 74 / 70 points | $0.057 |
+| ProtectAI v2 (local) | 0.994 | 0.735 | 48% | none* | $0 |
+| PIGuard (local) | 0.990 | 0.931 | 10.3% | none* | $0 |
+| Claude Haiku 5.5 | 0.964 | 1.000 | 8.6% | 47 / 94 points (API refusals) | $0.078 |
+| GPT-6 Luna | 0.950 | 0.999 | 5.3% | none* | $0.087 |
+
+\* "None" partly by flagging encoded text in general: ProtectAI and PIGuard flag 100% of *benign* base64, Jev 22%,
+Luna 26%.
+
+- The plan's own question ("does it try to give instructions to an AI?") flagged up to 69% of benign prompts. A
+  wording that says what isn't an injection, chosen on dev, fixed it for every model.
+- Our fine-tuned model scored 0.99999 on dev and then flagged every benign email: it learned the format, not the
+  attack.
+- Checked by a second model working only from the code and saved scores (`Prompt Injection/VERIFY.md`, report in
+  `review/`). It reproduced every number it recomputed and found near-copies across the training/dev/test split;
+  those rows were removed from training and dev (test unchanged) and our two in-house guards retrained.
+- Prompt Guard 2 joins when Meta approves the licence. Write-up: the notebook's Findings and Caveats.
 
 ## How every benchmark is run
 

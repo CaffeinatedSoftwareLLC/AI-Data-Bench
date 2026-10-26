@@ -1,0 +1,5 @@
+models/
+logs/
+cache/**/*.lock
+cache/**/*.tmp
+review/rebuilt_items.parquet
