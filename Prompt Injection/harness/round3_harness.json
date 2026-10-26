@@ -170,6 +170,23 @@
         "artifact_sha": "519d188ebb69acd1"
       },
       "config_fingerprint": "8874c37b2d4fb7e1"
+    },
+    "Lasso claude-hooks": {
+      "config": {
+        "arm": "Lasso claude-hooks",
+        "commit": "8fbfd14c2a2271fe58a95c416b3b31880458c7bc",
+        "patterns_sha": "b670e161c16238f8",
+        "flags": "IGNORECASE|MULTILINE",
+        "categories": [
+          "instructionOverridePatterns",
+          "rolePlayingPatterns",
+          "encodingPatterns",
+          "contextManipulationPatterns"
+        ],
+        "min_chars": 10,
+        "score": "1 if any pattern matches, else 0"
+      },
+      "config_fingerprint": "d858365e9fec1b1e"
     }
   },
   "not_sent": "system prompt, temperature, top_p and reasoning settings (provider defaults)"

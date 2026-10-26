@@ -7,14 +7,16 @@ AUROC: LLMail vs PromptShield benign,Claude Haiku 5.5,0.95511945,0.9503349396874
 AUROC: LLMail vs PromptShield benign,GPT-6 Luna,0.9140929375,0.9089113675,0.9192449803125,TF-IDF + LR,0.0814858625,0.0,0.0
 AUROC: LLMail vs PromptShield benign,Narrow,0.9840254375,0.98222844125,0.9856505075,TF-IDF + LR,0.011553362499999942,0.0,0.0
 AUROC: LLMail vs PromptShield benign,TF-IDF + LR,0.9955788,0.994256160625,0.996700360625,TF-IDF + LR,,,
+AUROC: LLMail vs PromptShield benign,Lasso claude-hooks,0.5337375,0.5300365625000001,0.5374134374999999,TF-IDF + LR,0.4618413,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,ProtectAI v2,0.9944349753694581,0.992631921182266,0.9960561699507389,Jev 1.14,0.004378817733990181,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,PIGuard,0.9903064039408866,0.9872310344827586,0.9929141502463054,Jev 1.14,0.008507389162561663,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,Jev 1.14,0.9988137931034483,0.9981924384236452,0.9992917241379311,Jev 1.14,,,
-AUROC: LLMail vs LLMail benign emails,Metis (GreenPT),0.9980068965517241,0.9970451231527093,0.9988168965517241,Jev 1.14,0.0008068965517241677,0.048,0.336
+AUROC: LLMail vs LLMail benign emails,Metis (GreenPT),0.9980068965517241,0.9970451231527093,0.9988168965517241,Jev 1.14,0.0008068965517241677,0.048,0.384
 AUROC: LLMail vs LLMail benign emails,Claude Haiku 5.5,0.9635310344827587,0.9583015763546798,0.9685997783251231,Jev 1.14,0.035282758620689636,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,GPT-6 Luna,0.9501,0.9461,0.954005,Jev 1.14,0.048713793103448366,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,Narrow,0.9627123152709359,0.9560311330049261,0.9687725615763547,Jev 1.14,0.036101477832512385,0.0,0.0
 AUROC: LLMail vs LLMail benign emails,TF-IDF + LR,0.991711330049261,0.9893551231527093,0.9938079310344827,Jev 1.14,0.007102463054187269,0.0,0.0
+AUROC: LLMail vs LLMail benign emails,Lasso claude-hooks,0.5368,0.5332975,0.5405,Jev 1.14,0.46201379310344826,0.0,0.0
 AUROC: PromptShield attacks vs benign,ProtectAI v2,0.7117093125,0.6992108554687501,0.72313168125,Jev 1.14,0.23969975,0.0,0.0
 AUROC: PromptShield attacks vs benign,PIGuard,0.82513903125,0.8149206031249999,0.8345327289062501,Jev 1.14,0.12627003125000003,0.0,0.0
 AUROC: PromptShield attacks vs benign,Jev 1.14,0.9514090625,0.94662477109375,0.956176453125,Jev 1.14,,,
@@ -23,22 +25,25 @@ AUROC: PromptShield attacks vs benign,Claude Haiku 5.5,0.91226725,0.905842160937
 AUROC: PromptShield attacks vs benign,GPT-6 Luna,0.797999,0.78669278828125,0.80871436953125,Jev 1.14,0.1534100625,0.0,0.0
 AUROC: PromptShield attacks vs benign,Narrow,0.79931103125,0.78982581015625,0.8089877296875,Jev 1.14,0.15209803125,0.0,0.0
 AUROC: PromptShield attacks vs benign,TF-IDF + LR,0.751273125,0.7401785828125,0.7618085546875,Jev 1.14,0.20013593750000003,0.0,0.0
+AUROC: PromptShield attacks vs benign,Lasso claude-hooks,0.5686875,0.56075,0.5760640625000001,Jev 1.14,0.3827215625,0.0,0.0
 AUROC: AgentDojo attack vs its benign,ProtectAI v2,0.7353119321623258,0.6240081768625075,0.8358234066895485,Jev 1.14,0.2646880678376742,0.0,0.0
-AUROC: AgentDojo attack vs its benign,PIGuard,0.9308836395450568,0.8577175449222694,0.9836816071068039,Jev 1.14,0.06911636045494318,0.026,0.182
+AUROC: AgentDojo attack vs its benign,PIGuard,0.9308836395450568,0.8577175449222694,0.9836816071068039,Jev 1.14,0.06911636045494318,0.026,0.208
 AUROC: AgentDojo attack vs its benign,Jev 1.14,1.0,1.0,1.0,Jev 1.14,,,
 AUROC: AgentDojo attack vs its benign,Metis (GreenPT),1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
 AUROC: AgentDojo attack vs its benign,Claude Haiku 5.5,1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
 AUROC: AgentDojo attack vs its benign,GPT-6 Luna,0.9992597079211253,0.9978464230432734,1.0,Jev 1.14,0.0007402920788747158,0.254,1.0
 AUROC: AgentDojo attack vs its benign,Narrow,0.9180967763644929,0.8416060973147588,0.9779721044484824,Jev 1.14,0.08190322363550706,0.0,0.0
 AUROC: AgentDojo attack vs its benign,TF-IDF + LR,0.988357224577697,0.9776515916279697,0.9957618278484419,Jev 1.14,0.011642775422302964,0.0,0.0
+AUROC: AgentDojo attack vs its benign,Lasso claude-hooks,0.5,0.5,0.5,Jev 1.14,0.5,0.0,0.0
 AUROC: Custom attack vs its twins,ProtectAI v2,0.8475,0.7074375,0.9475,Claude Haiku 5.5,0.14500000000000002,0.0,0.0
-AUROC: Custom attack vs its twins,PIGuard,0.8975,0.779875,0.9825,Claude Haiku 5.5,0.09500000000000008,0.03,0.21
+AUROC: Custom attack vs its twins,PIGuard,0.8975,0.779875,0.9825,Claude Haiku 5.5,0.09500000000000008,0.03,0.24
 AUROC: Custom attack vs its twins,Jev 1.14,0.9675,0.9125,1.0,Claude Haiku 5.5,0.025000000000000022,0.22,1.0
-AUROC: Custom attack vs its twins,Metis (GreenPT),0.93875,0.85246875,0.995,Claude Haiku 5.5,0.053750000000000075,0.04,0.28
+AUROC: Custom attack vs its twins,Metis (GreenPT),0.93875,0.85246875,0.995,Claude Haiku 5.5,0.053750000000000075,0.04,0.32
 AUROC: Custom attack vs its twins,Claude Haiku 5.5,0.9925,0.9749687499999999,1.0,Claude Haiku 5.5,,,
-AUROC: Custom attack vs its twins,GPT-6 Luna,0.9,0.8,0.975,Claude Haiku 5.5,0.09250000000000003,0.024,0.168
-AUROC: Custom attack vs its twins,Narrow,0.90875,0.80375,0.9775,Claude Haiku 5.5,0.0837500000000001,0.02,0.14
+AUROC: Custom attack vs its twins,GPT-6 Luna,0.9,0.8,0.975,Claude Haiku 5.5,0.09250000000000003,0.024,0.192
+AUROC: Custom attack vs its twins,Narrow,0.90875,0.80375,0.9775,Claude Haiku 5.5,0.0837500000000001,0.02,0.16
 AUROC: Custom attack vs its twins,TF-IDF + LR,0.765,0.6049375,0.9,Claude Haiku 5.5,0.22750000000000004,0.0,0.0
+AUROC: Custom attack vs its twins,Lasso claude-hooks,0.55,0.5,0.625,Claude Haiku 5.5,0.4425,0.0,0.0
 recall LLMail @t_1pct,ProtectAI v2,0.7586,0.745995,0.7692,Narrow,0.24139999999999995,0.0,0.0
 recall LLMail @t_1pct,PIGuard,0.4612,0.4474,0.47440499999999997,Narrow,0.5388,0.0,0.0
 recall LLMail @t_1pct,Jev 1.14,0.8286,0.8184,0.839805,Narrow,0.1714,0.0,0.0
@@ -47,6 +52,7 @@ recall LLMail @t_1pct,Claude Haiku 5.5,0.9426,0.936,0.9488,Narrow,0.057400000000
 recall LLMail @t_1pct,GPT-6 Luna,0.9002,0.8915949999999999,0.9084,Narrow,0.0998,0.0,0.0
 recall LLMail @t_1pct,Narrow,1.0,1.0,1.0,Narrow,,,
 recall LLMail @t_1pct,TF-IDF + LR,0.9862,0.9828,0.9892,Narrow,0.013800000000000034,0.0,0.0
+recall LLMail @t_1pct,Lasso claude-hooks,0.0736,0.0666,0.0804,Narrow,0.9264,0.0,0.0
 recall PromptShield attacks @t_1pct,ProtectAI v2,0.069,0.058487500000000005,0.08,Narrow,0.9065000000000001,0.0,0.0
 recall PromptShield attacks @t_1pct,PIGuard,0.4305,0.4085,0.4510125,Narrow,0.545,0.0,0.0
 recall PromptShield attacks @t_1pct,Jev 1.14,0.64,0.618,0.6605,Narrow,0.3355,0.0,0.0
@@ -55,6 +61,7 @@ recall PromptShield attacks @t_1pct,Claude Haiku 5.5,0.6245,0.6035,0.64651249999
 recall PromptShield attacks @t_1pct,GPT-6 Luna,0.665,0.6449875,0.686,Narrow,0.3105,0.0,0.0
 recall PromptShield attacks @t_1pct,Narrow,0.9755,0.9689875,0.982,Narrow,,,
 recall PromptShield attacks @t_1pct,TF-IDF + LR,0.196,0.178,0.2135,Narrow,0.7795000000000001,0.0,0.0
+recall PromptShield attacks @t_1pct,Lasso claude-hooks,0.1435,0.128,0.1585,Narrow,0.8320000000000001,0.0,0.0
 recall AgentDojo @t_1pct,ProtectAI v2,0.7480314960629921,0.7059711286089239,0.7926509186351706,Jev 1.14,0.25196850393700787,0.0,0.0
 recall AgentDojo @t_1pct,PIGuard,0.9973753280839895,0.9921259842519685,1.0,Jev 1.14,0.002624671916010457,0.74,1.0
 recall AgentDojo @t_1pct,Jev 1.14,1.0,1.0,1.0,Jev 1.14,,,
@@ -62,12 +69,14 @@ recall AgentDojo @t_1pct,Metis (GreenPT),1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
 recall AgentDojo @t_1pct,Claude Haiku 5.5,1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
 recall AgentDojo @t_1pct,GPT-6 Luna,1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
 recall AgentDojo @t_1pct,Narrow,1.0,1.0,1.0,Jev 1.14,0.0,1.0,1.0
-recall AgentDojo @t_1pct,TF-IDF + LR,0.9763779527559056,0.9606299212598425,0.989501312335958,Jev 1.14,0.023622047244094446,0.002,0.014
-recall Custom @t_1pct,ProtectAI v2,0.8,0.6,0.95,Narrow,0.19999999999999996,0.018,0.126
+recall AgentDojo @t_1pct,TF-IDF + LR,0.9763779527559056,0.9606299212598425,0.989501312335958,Jev 1.14,0.023622047244094446,0.002,0.016
+recall AgentDojo @t_1pct,Lasso claude-hooks,0.0,0.0,0.0,Jev 1.14,1.0,0.0,0.0
+recall Custom @t_1pct,ProtectAI v2,0.8,0.6,0.95,Narrow,0.19999999999999996,0.018,0.144
 recall Custom @t_1pct,PIGuard,0.6,0.4,0.8,Narrow,0.4,0.0,0.0
-recall Custom @t_1pct,Jev 1.14,0.75,0.55,0.95,Narrow,0.25,0.006,0.042
-recall Custom @t_1pct,Metis (GreenPT),0.75,0.55,0.95,Narrow,0.25,0.006,0.042
-recall Custom @t_1pct,Claude Haiku 5.5,0.85,0.7,1.0,Narrow,0.15000000000000002,0.082,0.5740000000000001
-recall Custom @t_1pct,GPT-6 Luna,0.8,0.6,0.95,Narrow,0.19999999999999996,0.026,0.182
+recall Custom @t_1pct,Jev 1.14,0.75,0.55,0.95,Narrow,0.25,0.006,0.048
+recall Custom @t_1pct,Metis (GreenPT),0.75,0.55,0.95,Narrow,0.25,0.006,0.048
+recall Custom @t_1pct,Claude Haiku 5.5,0.85,0.7,1.0,Narrow,0.15000000000000002,0.082,0.656
+recall Custom @t_1pct,GPT-6 Luna,0.8,0.6,0.95,Narrow,0.19999999999999996,0.026,0.208
 recall Custom @t_1pct,Narrow,1.0,1.0,1.0,Narrow,,,
 recall Custom @t_1pct,TF-IDF + LR,0.2,0.05,0.4,Narrow,0.8,0.0,0.0
+recall Custom @t_1pct,Lasso claude-hooks,0.1,0.0,0.25,Narrow,0.9,0.0,0.0

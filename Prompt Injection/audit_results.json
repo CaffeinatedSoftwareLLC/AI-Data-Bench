@@ -341,6 +341,41 @@
       "detail": ""
     },
     {
+      "check": "Lasso claude-hooks: all 24702 items scored with fingerprint d858365e9fec1b1e",
+      "ok": true,
+      "detail": "24702 found"
+    },
+    {
+      "check": "Lasso claude-hooks: cached text hashes equal manifest hashes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Lasso claude-hooks: scores in [0, 1], none missing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Lasso claude-hooks: invalid answers scored 0",
+      "ok": true,
+      "detail": "0 invalid"
+    },
+    {
+      "check": "Lasso claude-hooks: achieved dev FPR at t_1pct <= 1%",
+      "ok": true,
+      "detail": "0.0047"
+    },
+    {
+      "check": "Lasso claude-hooks: notebook AUROC matches sklearn",
+      "ok": true,
+      "detail": "0.533737 vs 0.533737"
+    },
+    {
+      "check": "Lasso claude-hooks: notebook recall@t_1pct matches",
+      "ok": true,
+      "detail": ""
+    },
+    {
       "check": "exists: harness/round3_harness.json",
       "ok": true,
       "detail": ""
@@ -429,6 +464,12 @@
       "t_1pct": 0.43605704503906567,
       "recall LLMail @t_1pct": 0.9862,
       "dev FPR": 0.01
+    },
+    "Lasso claude-hooks": {
+      "AUROC LLMail vs PS benign": 0.5337375,
+      "t_1pct": 0.0,
+      "recall LLMail @t_1pct": 0.0736,
+      "dev FPR": 0.004666666666666667
     }
   },
   "failed": 0

@@ -18,7 +18,7 @@ Not sponsored by any of the model providers tested.
 | `IBM Attrition/` | Which employees are about to leave? | Random Forest vs Claude Sonnet 5, GPT-6 Sol, Gemini 3.8 Flash vs Jev | `attrition_bench.ipynb` |
 | `ABCD Call Labeling/`, round one | Label 1,000 support chats: why they called, what the agent did, how far it went | Claude Haiku 4.5 and 5.5, GPT-6 Luna, Gemini 3.5 Flash-Lite, Jev 1.13, Laya, a trained TF-IDF model, a regex | `01_explore`, `02_benchmark`, `03_haiku_comparison` |
 | `ABCD Call Labeling/`, round two | Same chats, one question fixed, newer decision models | Haiku 5.5, Luna, Flash-Lite, Jev 1.13 and 1.14, Cloudflare's Clef and Clef-flash, GreenPT's Metis | `04_round_two` (plan and results in `DATABENCH_2.md`) |
-| `Prompt Injection/` | Does this email, tool output or message contain instructions aimed at the AI? | ProtectAI v2, PIGuard, Jev 1.14, Metis, Haiku 5.5, Luna, our fine-tuned ModernBERT ("Narrow"), TF-IDF | `01_injection_bench` (plan in `PLAN.md`) |
+| `Prompt Injection/` | Does this email, tool output or message contain instructions aimed at the AI? | ProtectAI v2, PIGuard, Jev 1.14, Metis, Haiku 5.5, Luna, our fine-tuned ModernBERT ("Narrow"), TF-IDF, Lasso's regex hook for Claude Code | `01_injection_bench` (plan in `PLAN.md`) |
 
 ## Round two at a glance
 
@@ -68,9 +68,15 @@ Thresholds chosen on dev, test scored once. AUROC is 0.5 for a coin flip and 1.0
 | PIGuard (local) | 0.990 | 0.931 | 10.3% | none* | $0 |
 | Claude Haiku 5.5 | 0.964 | 1.000 | 8.6% | 47 / 94 points (API refusals) | $0.078 |
 | GPT-6 Luna | 0.950 | 0.999 | 5.3% | none* | $0.087 |
+| Lasso claude-hooks (regex, v1.1) | 0.537 | 0.500 | 3.2% | none* | $0 |
 
-\* "None" partly by flagging encoded text in general: ProtectAI and PIGuard flag 100% of *benign* base64, Jev 22%,
-Luna 26%.
+\* "None" partly by flagging encoded text in general: ProtectAI, PIGuard and Lasso flag 100% of *benign* base64,
+Jev 22%, Luna 26%.
+
+- **v1.1 (2026-10-26) adds a regex hook.** [Lasso's claude-hooks](https://github.com/lasso-security/claude-hooks)
+  scans Claude Code tool output with 96 patterns. It catches 7.4% of attack emails and none of the attacked tool
+  outputs, about a coin flip (AUROC 0.50-0.57). Real injections read like ordinary requests, not "ignore previous
+  instructions". Its patterns are used unchanged and nothing is tuned; every other number is as before.
 
 - The plan's own question ("does it try to give instructions to an AI?") flagged up to 69% of benign prompts. A
   wording that says what isn't an injection, chosen on dev, fixed it for every model.

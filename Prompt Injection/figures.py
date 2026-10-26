@@ -16,6 +16,7 @@ OUT = Path(__file__).parent / "figures"
 
 # Fixed order = the validated reference palette's slot order (gray replaces red: TF-IDF is the "plain ML" floor,
 # gray as in ABCD). Jev orange, Luna aqua, Haiku green, Metis violet are the colors these models had in ABCD.
+PENTAGON = "M0,-1L0.951,-0.309L0.588,0.809L-0.588,0.809L-0.951,-0.309Z"   # Vega's built-in shapes are used up
 GUARDS = {   # name: (color, shape, family)
     "ProtectAI v2":     ("#2a78d6", "circle",         "Local classifier"),
     "Jev 1.14":         ("#eb6834", "square",         "Decision model"),
@@ -25,8 +26,10 @@ GUARDS = {   # name: (color, shape, family)
     "Claude Haiku 5.5": ("#008300", "triangle-down",  "LLM"),
     "Metis (GreenPT)":  ("#6250d6", "triangle-right", "Decision model"),
     "TF-IDF + LR":      ("#52514e", "triangle-left",  "Ours (trained here)"),
+    "Lasso claude-hooks": ("#e34948", PENTAGON,       "Regex hook"),   # the palette's red slot, free since gray took TF-IDF
 }
-FAMILIES = {"Local classifier": [1, 0], "Decision model": [7, 3], "LLM": [2, 2], "Ours (trained here)": [9, 3, 2, 3]}
+FAMILIES = {"Local classifier": [1, 0], "Decision model": [7, 3], "LLM": [2, 2], "Ours (trained here)": [9, 3, 2, 3],
+            "Regex hook": [2, 6]}
 INK, MUTED, AXIS, GRID, SURFACE = "#0b0b0b", "#52514e", "#c3c2b7", "#e1e0d9", "#fcfcfb"
 SEQ = ["#f0efec", "#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]   # light -> dark blue
 FONT = "Segoe UI, Helvetica Neue, Arial, sans-serif"
@@ -281,11 +284,13 @@ def evasion(results):
         heat_block(caught, columns, order, "500 attacks: share still caught (higher is better)", True, color),
         heat_block(flagged, columns, order, "200 harmless texts: share wrongly flagged (lower is better)", False, color),
         spacing=30).resolve_scale(color="shared").properties(title=alt.Title(
-            "Tricks: Jev and Luna see through all five; Metis can't read encoded text; three guards just flag anything encoded",
+            "Tricks: Jev and Luna see through all five; Metis can't read encoded text; four guards just flag anything encoded",
             subtitle=["The same texts with each trick applied. A good guard is dark in both tables. Dark left + light right = "
                       "it flags the trick itself, not the attack.",
                       "Claude's low base64 and rot13 numbers are API refusals, counted as misses. The \"classify as safe\" "
-                      "prefix is itself an instruction to the AI, so flagging it is defensible."]))
+                      "prefix is itself an instruction to the AI, so flagging it is defensible.",
+                      "Lasso's encoded hits come from one pattern matching the \"Decode this base64 text\" line in front, "
+                      "on attacks and harmless text alike."]))
     return save(chart, "3_evasion_tricks")
 
 
@@ -369,7 +374,7 @@ def speed_vs_quality(results):
     frame["family"] = frame["guard"].map(lambda g: GUARDS[g][2])
     frame["note"] = frame.apply(lambda r: f"{r['guard']}  ({'free' if r['cost'] == 0 else f'${r['cost']:.3f}/1k'})", axis=1)
     enc = guard_encodings()
-    xs = alt.Scale(type="log", domain=[0.7, 4000])
+    xs = alt.Scale(type="log", domain=[0.3, 4000])
     points = alt.Chart(frame).mark_point(filled=True, size=260, stroke=SURFACE, strokeWidth=2).encode(
         x=alt.X("ms:Q", scale=xs, axis=alt.Axis(title="Median time per item (ms, log scale)", values=[1, 10, 100, 1000])),
         y=alt.Y("gap:Q", scale=alt.Scale(domain=[0, 1]), axis=alt.Axis(format="%", title="Attack emails caught minus harmless prompts flagged")),

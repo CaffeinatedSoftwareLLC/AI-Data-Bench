@@ -197,6 +197,43 @@ class TfidfLogReg(Arm):
         return [result(score=float(s), raw=f"{s:.6f}", latency_ms=elapsed) for s in scores]
 
 
+# ---------------------------------------------------------------- rule-based hooks (regex, no model)
+
+class LassoHook(Arm):
+    """Lasso's claude-hooks PostToolUse defender, matched as its post-tool-defender.py does (harness/lasso-claude-hooks)."""
+    kind = "rules"
+    name = "Lasso claude-hooks"
+    commit = "8fbfd14c2a2271fe58a95c416b3b31880458c7bc"
+    path = HERE / "harness" / "lasso-claude-hooks" / "patterns.yaml"
+    categories = ["instructionOverridePatterns", "rolePlayingPatterns", "encodingPatterns", "contextManipulationPatterns"]
+    min_chars = 10   # the hook skips shorter text
+
+    def config(self):
+        return {"arm": self.name, "commit": self.commit, "patterns_sha": file_sha(self.path), "flags": "IGNORECASE|MULTILINE",
+                "categories": self.categories, "min_chars": self.min_chars, "score": "1 if any pattern matches, else 0"}
+
+    def load(self):
+        if not hasattr(self, "_patterns"):
+            import yaml
+            config = yaml.safe_load(self.path.read_text(encoding="utf-8"))
+            self._patterns = []
+            for category in self.categories:
+                for item in config.get(category, []):
+                    try:
+                        self._patterns.append((item.get("reason", ""), re.compile(item["pattern"], re.IGNORECASE | re.MULTILINE)))
+                    except re.error:
+                        pass   # the hook skips invalid patterns too
+        return self._patterns
+
+    def predict(self, texts):
+        patterns, out = self.load(), []
+        for text in texts:
+            started = time.perf_counter()
+            hits = [reason for reason, rx in patterns if rx.search(text)] if len(text) >= self.min_chars else []
+            out.append(result(score=1.0 if hits else 0.0, raw=json.dumps(hits), latency_ms=(time.perf_counter() - started) * 1000))
+        return out
+
+
 # ---------------------------------------------------------------- API arms (one call per item)
 
 class Pacer:
@@ -400,6 +437,8 @@ def make_arm(name, wording=None):
                             window=1024, stride=128, batch_size=16, local_path=str(HERE / "models" / "narrow-v1"))
     if name == "TF-IDF + LR":
         return TfidfLogReg()
+    if name == "Lasso claude-hooks":
+        return LassoHook()
     assert wording, "API arms need a question wording (FROZEN_WORDING or an explicit one)"
     return {"Claude Haiku 5.5": ClaudeArm, "GPT-6 Luna": LunaArm, "Jev 1.14": JevArm, "Metis (GreenPT)": MetisArm}[name](wording)
 
@@ -407,4 +446,5 @@ def make_arm(name, wording=None):
 LOCAL_ARMS = ["ProtectAI v2", "PIGuard", "Prompt Guard 2 86M"]
 TRAINED_ARMS = ["Narrow", "TF-IDF + LR"]
 API_ARMS = ["Jev 1.14", "Metis (GreenPT)", "Claude Haiku 5.5", "GPT-6 Luna"]
-ALL_ARMS = LOCAL_ARMS + API_ARMS + TRAINED_ARMS
+RULE_ARMS = ["Lasso claude-hooks"]   # added 2026-10-26, after the test run; nothing in it is tuned
+ALL_ARMS = LOCAL_ARMS + API_ARMS + TRAINED_ARMS + RULE_ARMS
